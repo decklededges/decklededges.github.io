@@ -4,9 +4,6 @@ title: What Is This?
 permalink: /about/
 ---
 
-
-### What Is This?
-
 This website exists to serve as an (opinionated) repository of game design patterns and information for Tabletop Role-playing Games, often abbreviated as TTRPGs.
 
 Many such repositories already exist in the form of blogs. Unfortunately, blogs are not a positive format for organising information in a useful way.  

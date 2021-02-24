@@ -11,7 +11,7 @@ The below core premises are held to be true for TTRPG design. Not *all* tabletop
 Certain terms such as: ```RPG```, ```GM```, ```PC```, and ```player``` are not currently defined in this document, and so some knowledge is assumed.
 
 * An RPG has rules.  
-*The rules of an RPG exist to determine who has authority to narrate a given thing (GM, another player type, a randomiser, etc).  
+* The rules of an RPG exist to determine who has authority to narrate a given thing (GM, another player type, a randomiser, etc).  
 * A GM is not the same thing as a rules-enforcer; there are GMless RPGs in much the same way that two people can play Chess without requiring a referee.  
 * The table/group is the consensus, by social contract. People are playing the game because they chose to play the game; someone is a GM because the table accepted them as GM.
 * Rules should be unambiguous, reproducible and result in the same spread of outcomes. For example, a player who learns the rules to *Apocalypse World*, sits down at a table playing *Apocalypse World* 'by the book', rules as written, can then sit down at another table also playing Apocalypse World 'by the book' and trust that they will follow the same procedures the player is already familiar with.  
