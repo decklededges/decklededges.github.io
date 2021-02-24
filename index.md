@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Hot Takes about Cool Games
-permalink: /
 ---
 
 This site is a repository of tabletop game design information, designed to be accessible (though often technical and dry) to enthusiasts and amateur designers.  
