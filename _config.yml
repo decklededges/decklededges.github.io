@@ -4,7 +4,7 @@
 
 # Name of your site (displayed in the header)
 name: Tabletop RPG Takes
-
+remote_theme: pmarsceill/just-the-docs
 # Short bio or description (displayed in the header)
 description: Strong opinions, compiled data, low stakes.
 
