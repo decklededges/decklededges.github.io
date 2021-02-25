@@ -18,7 +18,7 @@ title: Tabletop Design Takes
 description: Hot Takes, Low Stakes
 baseurl: "" # the subpath of your site, e.g. /blog
 theme: just-the-docs
-remote-theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 
 url: "https://decklededges.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #url: "http://127.0.0.1:4000" # the base hostname & protocol for your site, e.g. http://example.com
