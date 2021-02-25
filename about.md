@@ -2,7 +2,9 @@
 layout: default
 title: What Is This?
 permalink: /about/
+nav_order: 2
 ---
+# What Is This?
 
 This website exists to serve as an (opinionated) repository of game design patterns and information for Tabletop Role-playing Games, often abbreviated as TTRPGs.
 

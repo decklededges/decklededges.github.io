@@ -2,10 +2,12 @@
 layout: default
 title: Core Premises
 permalink: /premises/
+nav_order: 3
 ---
+# Core Premises
 
 The below core premises are held to be true for TTRPG design. Not *all* tabletop RPG design, but the type specifically held by the writers to be examples of good design.  
-Certain terms such as: ```RPG```, ```GM```, ```PC```, and ```player``` are not currently defined in this document, and so some knowledge is assumed.
+Certain terms such as: `RPG`, `GM`, `PC`, and `player` are not currently defined in this document, and so some knowledge is assumed.
 
 * An RPG has rules.  
 * The rules of an RPG exist to determine who has authority to narrate a given thing (GM, another player type, a randomiser, etc).  

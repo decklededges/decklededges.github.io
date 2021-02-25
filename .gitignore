@@ -2,7 +2,7 @@
 _site
 .jekyll-metadata
 *-cache/
-
+_config_local.yml
 
 ### NPM ###
 /node_modules/
