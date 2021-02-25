@@ -1,11 +1,8 @@
 ---
-layout: page
-title: Core Premises?
+layout: default
+title: Core Premises
 permalink: /premises/
 ---
-
-
-### Core Premises
 
 The below core premises are held to be true for TTRPG design. Not *all* tabletop RPG design, but the type specifically held by the writers to be examples of good design.  
 Certain terms such as: ```RPG```, ```GM```, ```PC```, and ```player``` are not currently defined in this document, and so some knowledge is assumed.
