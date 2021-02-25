@@ -7,6 +7,9 @@ nav_order: 3
 # Core Premises
 
 The below core premises are held to be true for TTRPG design. Not *all* tabletop RPG design, but the type specifically held by the writers to be examples of good design.  
+
+The (temporary) name for this is **Developer-Focused Design** - the onus is on the game developer to provide a functional out-of-the-box experience that *can* be customised by the end user, but which does not *need* to be in order to be a functional game product.
+
 Certain terms such as: `RPG`, `GM`, `PC`, and `player` are not currently defined in this document, and so some knowledge is assumed.
 
 * An RPG has rules.  

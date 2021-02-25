@@ -35,7 +35,7 @@ exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "pac
 # include: ["docs/tests/"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+logo: "/images/diceimg.jpg"
 
 # Enable or disable the site search
 # Supports true (default) or false
@@ -127,4 +127,3 @@ compress_html:
   profile: false
   # ignore:
   #   envs: all
-  
