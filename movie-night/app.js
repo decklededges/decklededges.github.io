@@ -1,5 +1,5 @@
 // ---- CONFIG: paste your Apps Script Web App /exec URL here ----
-const API_URL = "https://script.google.com/macros/s/AKfycbxMGymKIvUnwhns1ZWd4dBVRUOAEYMeMFb5_cqIYV7jKSIJIcS4ItgoFIS9Q_1zVTV8jg/exec";
+const API_URL = "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE";
 
 const els = {
   who: document.getElementById('who'),
@@ -110,6 +110,11 @@ document.getElementById('resolveBtn').onclick = () => {
     toast(`Resolved: ${res.winners.map(w => w.name).join(', ') || 'no winners'}`);
     render(res.state);
   });
+};
+
+document.getElementById('startNewWeekBtn').onclick = () => {
+  if (!confirm('Archive and clear this week\'s board? Do this after the event is over.')) return;
+  api('startNewWeek', { actor: whoAmI() }).then(refresh);
 };
 
 document.getElementById('reserveBtn').onclick = () => {
