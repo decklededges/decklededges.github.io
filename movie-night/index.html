@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Night</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>🎬 Movie Night</h1>
+    <div class="identity">
+      <label for="who">Acting as</label>
+      <select id="who"></select>
+    </div>
+  </header>
+
+  <p class="loading" id="loadingMsg">Loading current state…</p>
+
+  <main id="app" hidden>
+
+    <section class="card">
+      <h2>This week</h2>
+      <table id="claimsTable"><tbody></tbody></table>
+      <div class="actions">
+        <button id="claimSingleBtn">Claim a slot</button>
+        <button id="claimDoubleBtn" class="secondary">Claim double slot</button>
+        <button id="cancelClaimBtn" class="danger">Cancel my claim</button>
+        <button id="cantMakeItBtn" class="danger">I can't make it (withdraw won slot)</button>
+      </div>
+      <div class="actions">
+        <button id="resolveBtn" class="primary">Resolve this week's slots</button>
+        <input type="date" id="resolveDate">
+      </div>
+      <p class="hint">Resolving checks today's reservations first, then ranks pending claims by points, then pulls from the filler pool if slots remain open.</p>
+    </section>
+
+    <section class="card">
+      <h2>Points leaderboard</h2>
+      <table id="pointsTable"><thead><tr><th>Name</th><th>Points</th><th>Filler?</th><th>Last picked</th></tr></thead><tbody></tbody></table>
+      <div class="actions">
+        <button id="fillerToggleBtn">Toggle my filler opt-in</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Reservations (advance claims)</h2>
+      <table id="reservationsTable"><thead><tr><th>Date</th><th>Name</th><th>Status</th></tr></thead><tbody></tbody></table>
+      <div class="actions">
+        <input type="date" id="reserveDate">
+        <button id="reserveBtn">Reserve this date</button>
+        <button id="cancelReserveBtn" class="danger">Cancel my reservation for this date</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Mod override</h2>
+      <div class="actions">
+        <select id="overrideName"></select>
+        <input type="date" id="overrideDate">
+        <button id="overrideBtn" class="danger">Force-assign slot</button>
+      </div>
+      <p class="hint">Rare escape hatch. Always logged below with who did it and why.</p>
+    </section>
+
+    <section class="card">
+      <h2>Log</h2>
+      <table id="logTable"><tbody></tbody></table>
+    </section>
+
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
