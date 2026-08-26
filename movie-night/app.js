@@ -101,7 +101,13 @@ els.who.addEventListener('change', () => localStorage.setItem('movieNightWho', w
 document.getElementById('claimSingleBtn').onclick = () => api('claim', { name: whoAmI(), type: 'single' }).then(refresh);
 document.getElementById('claimDoubleBtn').onclick = () => api('claim', { name: whoAmI(), type: 'double' }).then(refresh);
 document.getElementById('cancelClaimBtn').onclick = () => api('cancelClaim', { name: whoAmI() }).then(refresh);
-document.getElementById('cantMakeItBtn').onclick = () => api('cantMakeIt', { name: whoAmI() }).then(refresh);
+document.getElementById('cantMakeItBtn').onclick = () => {
+  api('cantMakeIt', { name: whoAmI() }).then(res => {
+    const rep = res.replacement.map(w => w.name).join(', ');
+    toast(rep ? `Slot reopened. Replacement: ${rep}` : 'Slot reopened. No replacement found — still open.');
+    render(res.state);
+  });
+};
 document.getElementById('fillerToggleBtn').onclick = () => api('toggleFiller', { name: whoAmI() }).then(refresh);
 
 document.getElementById('resolveBtn').onclick = () => {
