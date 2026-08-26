@@ -9,15 +9,7 @@
    ```
    manwhat	0	no	
    drunkenmonkeystyle	0	no	
-   Wapole Languray	0	no	
-   surfacelevelspeck	0	no	
-   Emy	0	no	
-   elfgames	0	no	
-   Fuego Fish	0	no	
    Treguna Mekoides	0	no	
-   Foolster	0	no	
-   Cassa	0	no	
-   Blind Duke	0	no	
    ```
 
    (Paste starting at cell A2, tab-separated — most spreadsheet paste boxes handle tabs fine.)
@@ -33,20 +25,11 @@
 1. Open `movie-night/app.js` and replace `PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE` with the URL from step 2.4.
 
 ## 4. Publish to GitHub Pages
-Your existing repo `decklededges/decklededges.github.io` is a Jekyll site — this folder sits alongside it untouched, since it has no Jekyll front matter and just gets copied through as-is.
+Just publish it to Github and Github Pages does the rest.
 
-```bash
-cd path/to/decklededges.github.io
-# copy the movie-night/ folder (index.html, app.js, style.css) into the repo root
-git add movie-night/
-git commit -m "Add movie night scheduler"
-git push
-```
-
-It'll be live at `https://decklededges.github.io/movie-night/` within a minute or two of GitHub Pages rebuilding.
 
 ## Notes / things you'll likely want to hand-edit in the Sheet sometimes
 - **Adding members later**: just add a row to Members directly, or use the `addMember` API action.
 - **Re-zeroing someone / fixing a mistake**: just edit the Points cell directly in the Sheet — that's the whole point of this backend choice.
 - **Attendance assumption**: the weekly resolve step gives +1 point to everyone *not* selected that week, on the assumption the whole roster attended. If someone skipped a week entirely, undo their point manually — the sheet doesn't currently track RSVPs/attendance, only picks.
-- **"This week" claims aren't auto-cleared** between weeks — `resolveWeek` marks them won/bumped but leaves the rows in `ThisWeek`. You may want to periodically clear old rows out of that tab (or I can add an auto-archive-and-clear step if it gets cluttered).
+- **"Clear the log** between weeks the log will get bigger and you'll need to clear it out!
