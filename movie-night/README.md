@@ -12,7 +12,7 @@
    Treguna Mekoides	0	no	
    ```
 
-   (Paste starting at cell A2, tab-separated — most spreadsheet paste boxes handle tabs fine.)
+   (Paste starting at cell A2 in the second row if you don't want to put in headings but come on headings makes it a lot easier)
 
 ## 2. Deploy the Apps Script as a Web App
 1. In the Apps Script editor: **Deploy → New deployment**.
@@ -21,15 +21,15 @@
 4. Deploy, authorize again if asked, then copy the **Web app URL** (ends in `/exec`).
 5. **Important**: every time you edit `Code.gs` later, you need to **Deploy → Manage deployments → Edit → New version** — just saving the script doesn't update the live `/exec` URL.
 
-## 3. Wire up the frontend
+## 3. Connect the frontend to the Google Sheet
 1. Open `movie-night/app.js` and replace `PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE` with the URL from step 2.4.
 
 ## 4. Publish to GitHub Pages
-Just publish it to Github and Github Pages does the rest.
+Just publish it to Github and Github Pages does the rest. You gotta go set up your repo as GitHub pages first, go to Settings and then Pages on the left and set all that up.
 
 
 ## Notes / things you'll likely want to hand-edit in the Sheet sometimes
-- **Adding members later**: just add a row to Members directly, or use the `addMember` API action.
-- **Re-zeroing someone / fixing a mistake**: just edit the Points cell directly in the Sheet — that's the whole point of this backend choice.
-- **Attendance assumption**: the weekly resolve step gives +1 point to everyone *not* selected that week, on the assumption the whole roster attended. If someone skipped a week entirely, undo their point manually — the sheet doesn't currently track RSVPs/attendance, only picks.
+- **Adding members later**: just add a row to Members directly
+- **Re-zeroing someone / fixing a mistake**: just edit the Points cell directly in the Sheet
+- **Attendance**: the weekly resolve step gives +1 point to everyone *not* selected that week, on the assumption the whole roster attended. If you want it to work some other way you gotta update that yourself.
 - **"Clear the log** between weeks the log will get bigger and you'll need to clear it out!
