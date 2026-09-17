@@ -202,7 +202,9 @@ function getState() {
   return {
     members: readRows(membersSheet()),
     thisWeek: readRows(thisWeekSheet()).filter(function (r) { return r.Status !== 'cancelled'; }),
-    reservations: readRows(reservationsSheet()).filter(function (r) { return r.Status === 'active' || r.Status === 'used'; }),
+    reservations: readRows(reservationsSheet())
+      .filter(function (r) { return r.Status === 'active' || r.Status === 'used'; })
+      .map(function (r) { r.Date = normalizeDateStr(r.Date); return r; }),
     log: readRows(logSheet()).slice(-40).reverse()
   };
 }
@@ -250,11 +252,25 @@ function toggleFiller(name) {
   return getState();
 }
 
+/**
+ * Google Sheets auto-converts date-shaped strings ("2026-09-20") into real
+ * Date values on write, so a cell you wrote as a string can come back from
+ * getValues() as a Date object with a timezone-dependent time component.
+ * Every date comparison in this file goes through this first so a Date
+ * object and a plain string always compare equal when they mean the same day.
+ */
+function normalizeDateStr(val) {
+  if (val instanceof Date) {
+    return Utilities.formatDate(val, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  return String(val || '').trim();
+}
+
 function reserve(name, dateStr) {
   if (!findMemberRow(name)) throw new Error('Unknown member: ' + name);
   var rows = readRows(reservationsSheet());
   for (var i = 0; i < rows.length; i++) {
-    if (rows[i].Date === dateStr && rows[i].Status === 'active') {
+    if (normalizeDateStr(rows[i].Date) === dateStr && rows[i].Status === 'active') {
       return { error: 'That date is already reserved by ' + rows[i].Name };
     }
   }
@@ -269,7 +285,7 @@ function reserve(name, dateStr) {
 function cancelReservation(name, dateStr) {
   var rows = readRows(reservationsSheet());
   for (var i = 0; i < rows.length; i++) {
-    if (rows[i].Date === dateStr && rows[i].Name === name && rows[i].Status === 'active') {
+    if (normalizeDateStr(rows[i].Date) === dateStr && rows[i].Name === name && rows[i].Status === 'active') {
       reservationsSheet().getRange(rows[i]._row, 3).setValue('cancelled');
       var refund = rows[i].PointsBefore;
       var m = findMemberRow(name);
@@ -437,7 +453,7 @@ function resolveWeek(actor, dateStr) {
   // 1) Reservations for this date take priority.
   var resRows = readRows(reservationsSheet());
   for (var i = 0; i < resRows.length && slotsLeft > 0; i++) {
-    if (resRows[i].Date === dateStr && resRows[i].Status === 'active') {
+    if (normalizeDateStr(resRows[i].Date) === dateStr && resRows[i].Status === 'active') {
       reservationsSheet().getRange(resRows[i]._row, 3).setValue('used');
       winners.push({ name: resRows[i].Name, via: 'reservation' });
       setMemberLastPick(resRows[i].Name, dateStr);
