@@ -79,7 +79,7 @@ function render(s) {
     </tr>`).join('');
 
   els.reservationsTable.innerHTML = s.reservations
-    .sort((a, b) => new Date(a.Date) - new Date(b.Date))
+    .sort((a, b) => a.Date.localeCompare(b.Date))
     .map(r => `<tr><td>${r.Date}</td><td>${r.Name}</td><td>${r.Status}</td></tr>`).join('')
     || '<tr><td colspan="3">No upcoming reservations.</td></tr>';
 
