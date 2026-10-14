@@ -90,6 +90,13 @@ function logSheet()          { return sheetWithHeaders('Log', ['Timestamp', 'Act
  *     is a points-weighted random draw instead of strict points-desc
  *     ordering — e.g. 49/49/2 points gives roughly 49%/49%/2% odds.
  *
+ *   FillerGambleMode: "yes" | "no" (default "no")
+ *     Independent of GambleMode. When "yes", fillers (people with FillerOptIn)
+ *     are drawn by a points-weighted random draw instead of strictly
+ *     highest-points-first, so who fills a slot isn't known until
+ *     Resolve Week is pressed. Claim winners stay deterministic unless
+ *     GambleMode is also on. Applies to post-withdrawal refills too.
+ *
  *   WinnerCost: 0–1 (default 1)
  *     Fraction of points taken from someone who wins a slot via a normal
  *     claim (single or double) or a mod override. 1 = full reset to 0,
@@ -100,7 +107,7 @@ function logSheet()          { return sheetWithHeaders('Log', ['Timestamp', 'Act
  *     nobody else claimed. Kept separate from WinnerCost since filling in
  *     is a more passive role and the group may want it to cost less.
  */
-var SETTINGS_DEFAULTS = { GambleMode: 'no', WinnerCost: '1', FillerCost: '1' };
+var SETTINGS_DEFAULTS = { GambleMode: 'no', FillerGambleMode: 'no', WinnerCost: '1', FillerCost: '1' };
 
 function settingsSheet() {
   var s = sheetWithHeaders('Settings', ['Key', 'Value']);
@@ -408,8 +415,13 @@ function fillSlots(slotsNeeded, excludeNames, dateStr) {
   if (slotsLeft > 0) {
     var fillerCost = getRatioSetting('FillerCost');
     var fillers = readRows(membersSheet())
-      .filter(function (m) { return m.FillerOptIn === 'yes' && usedNames.indexOf(m.Name) === -1; })
-      .sort(function (a, b) { return b.Points - a.Points; });
+      .filter(function (m) { return m.FillerOptIn === 'yes' && usedNames.indexOf(m.Name) === -1; });
+    if (getSetting('FillerGambleMode') === 'yes') {
+      fillers.forEach(function (m) { m._points = m.Points; });
+      fillers = weightedOrder(fillers);
+    } else {
+      fillers.sort(function (a, b) { return b.Points - a.Points; });
+    }
     for (var i = 0; i < fillers.length && slotsLeft > 0; i++) {
       var pointsAtWin = fillers[i].Points;
       thisWeekSheet().appendRow([new Date(), fillers[i].Name, 'single', 'won', pointsAtWin]);
