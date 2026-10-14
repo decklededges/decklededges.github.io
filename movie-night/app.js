@@ -1,5 +1,5 @@
 // ---- CONFIG: paste your Apps Script Web App /exec URL here ----
-const API_URL = "https://script.google.com/macros/s/AKfycbxMGymKIvUnwhns1ZWd4dBVRUOAEYMeMFb5_cqIYV7jKSIJIcS4ItgoFIS9Q_1zVTV8jg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwQa7F6YuhMxgAtwLz4OIfGAy4es0iFovMd0pilMFC6ZeXfOgA5iN5zoFo6PuQiHMtpyA/exec";
 
 const els = {
   who: document.getElementById('who'),
