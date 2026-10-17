@@ -200,7 +200,7 @@ function markClaimWon(claimRow, ratio) {
   var pts = findMemberRow(claimRow.Name).Points;
   thisWeekSheet().getRange(claimRow._row, 4).setValue('won');
   thisWeekSheet().getRange(claimRow._row, 5).setValue(pts);
-  setMemberPoints(claimRow.Name, pts * (1 - ratio));
+  setMemberPoints(claimRow.Name, Math.round(pts * (1 - ratio)));
 }
 
 /* ---------- actions ---------- */
@@ -425,7 +425,7 @@ function fillSlots(slotsNeeded, excludeNames, dateStr) {
     for (var i = 0; i < fillers.length && slotsLeft > 0; i++) {
       var pointsAtWin = fillers[i].Points;
       thisWeekSheet().appendRow([new Date(), fillers[i].Name, 'single', 'won', pointsAtWin]);
-      setMemberPoints(fillers[i].Name, pointsAtWin * (1 - fillerCost));
+      setMemberPoints(fillers[i].Name, Math.round(pointsAtWin * (1 - fillerCost)));
       usedNames.push(fillers[i].Name);
       winners.push({ name: fillers[i].Name, via: 'filler' });
       slotsLeft -= 1;
