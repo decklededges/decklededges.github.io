@@ -414,8 +414,20 @@ function fillSlots(slotsNeeded, excludeNames, dateStr) {
 
   if (slotsLeft > 0) {
     var fillerCost = getRatioSetting('FillerCost');
+    // Fillers come from the Members sheet, not ThisWeek, so nothing above has
+    // screened them. Block anyone already holding a slot this week, anyone who
+    // withdrew from one, and anyone the caller explicitly excluded (the person
+    // withdrawing, or reservation holders on the initial resolve).
+    var blockedNames = excludeNames.slice();
+    readRows(thisWeekSheet()).forEach(function (r) {
+      if (r.Status === 'won' || r.Status === 'withdrawn') blockedNames.push(r.Name);
+    });
     var fillers = readRows(membersSheet())
-      .filter(function (m) { return m.FillerOptIn === 'yes' && usedNames.indexOf(m.Name) === -1; });
+      .filter(function (m) {
+        return m.FillerOptIn === 'yes' &&
+               usedNames.indexOf(m.Name) === -1 &&
+               blockedNames.indexOf(m.Name) === -1;
+      });
     if (getSetting('FillerGambleMode') === 'yes') {
       fillers.forEach(function (m) { m._points = m.Points; });
       fillers = weightedOrder(fillers);
