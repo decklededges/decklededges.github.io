@@ -120,3 +120,33 @@ th { color: var(--muted); font-weight: 500; }
   font-size: 0.85rem;
   display: none;
 }
+
+/* Busy indicator shown while a request to the sheet is in flight */
+.busy-bar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  z-index: 10;
+}
+.busy-bar[hidden] { display: none; }
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-dim);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+button:disabled { opacity: 0.5; cursor: wait; }
