@@ -23,15 +23,35 @@ function todayStr() {
   return new Date().toISOString().slice(0, 10);
 }
 
+// ---- Busy indicator: spinner bar + all buttons disabled while a request is in flight ----
+const busyBar = document.createElement('div');
+busyBar.className = 'busy-bar';
+busyBar.hidden = true;
+busyBar.innerHTML = '<span class="spinner"></span><span>Working… the spreadsheet can take a few seconds</span>';
+document.body.appendChild(busyBar);
+
+let inFlight = 0;
+function setBusy(delta) {
+  inFlight += delta;
+  const busy = inFlight > 0;
+  busyBar.hidden = !busy;
+  document.querySelectorAll('button').forEach(b => { b.disabled = busy; });
+}
+
 async function api(action, params = {}) {
-  const usp = new URLSearchParams({ action, ...params });
-  const res = await fetch(`${API_URL}?${usp.toString()}`);
-  const data = await res.json();
-  if (data.error) {
-    toast(data.error);
-    throw new Error(data.error);
+  setBusy(1);
+  try {
+    const usp = new URLSearchParams({ action, ...params });
+    const res = await fetch(`${API_URL}?${usp.toString()}`);
+    const data = await res.json();
+    if (data.error) {
+      toast(data.error);
+      throw new Error(data.error);
+    }
+    return data;
+  } finally {
+    setBusy(-1);
   }
-  return data;
 }
 
 function toast(msg) {
